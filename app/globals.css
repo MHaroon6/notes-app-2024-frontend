@@ -17,7 +17,34 @@
 }
 
 /* body {
+
 } */
+.custom-btn {
+  background-color: transparent;
+  border: 2px solid;
+  border-image: linear-gradient(
+    to right,
+    rgb(0, 169, 0),
+    yellow,
+    orange,
+    rgb(255, 19, 19),
+    rgb(255, 143, 255)
+  );
+  border-image-slice: 1;
+  outline: none; /* optional: remove outline */
+  border-radius: 20px !important;
+}
+.custom-btn:hover {
+  border-image: linear-gradient(
+    to right,
+    orange,
+    rgb(255, 19, 19),
+    rgb(255, 143, 255),
+    rgb(0, 169, 0),
+    yellow
+  );
+  border-image-slice: 1;
+}
 
 @layer utilities {
   .text-balance {

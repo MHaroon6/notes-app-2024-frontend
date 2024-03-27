@@ -8,7 +8,7 @@ import HeaderIcon from "./HeaderIcon";
 
 const Header = () => {
   return (
-    <div className="fixed w-screen bg-gradient-to-l from-pink-50 via-white to-cyan-50 shadow-md">
+    <div className="fixed w-screen bg-gradient-to-l from-pink-50 to-cyan-50 shadow-md">
       <header className="relative flex flex-col md:flex-row md:justify-between items-start md:items-center my-2 ml-2 md:mx-10 ">
         {/* Logo */}
         <div className="logo flex justify-between items-center ">

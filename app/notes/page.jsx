@@ -6,6 +6,8 @@ const Notes = () => {
       <NotesPage
         emptyMessage1="Notes Folder is Empty"
         emptyMessage2="Click 'New Note' Button to add a Note"
+        currPage="notes"
+
       />
     </main>
   );

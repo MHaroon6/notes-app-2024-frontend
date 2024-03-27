@@ -18,12 +18,16 @@ const SidebarItem = ({ link, icon, color, title, toolTipPosition }) => {
       >
         <FontAwesomeIcon
           icon={icon}
-          className={`w-6 h-6 cursor-pointer hover:${color} ${
-            pathname === link && color
-          }`}
+          className={`w-6 h-6 cursor-pointer  ${
+            pathname === link ? color : "hover:text-gray-500"
+          }  `}
         />
       </Link>
-      <Tooltip anchorSelect={`#${title}`} content={title} place={toolTipPosition} />
+      <Tooltip
+        anchorSelect={`#${title}`}
+        content={title}
+        place={toolTipPosition}
+      />
     </>
   );
 };

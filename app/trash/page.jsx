@@ -7,6 +7,7 @@ const Trash = () => {
       <NotesPage
         emptyMessage1="Trash Bin is Empty"
         emptyMessage2="Deleted Notes will appear here"
+        currPage="trash"
       />
     </main>
   );

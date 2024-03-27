@@ -18,6 +18,7 @@ const Searchbar = () => {
         onChange={(e) => {
           setSearchString(e.target.value);
         }}
+        autoComplete="off"
       />
 
       <span

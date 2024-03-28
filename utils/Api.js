@@ -1,6 +1,8 @@
 import axios from "axios";
-
+ 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
+
+const myApiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 const Api = async (url, method, data = null) => {
   let response = null,
@@ -21,13 +23,19 @@ const Api = async (url, method, data = null) => {
     let result;
     switch (method.toLowerCase()) {
       case "get":
-        result = await axiosInstance.get(url);
+        result = await axiosInstance.get(url, {
+          params: { myKey: myApiKey },
+        });
         break;
       case "post":
-        result = await axiosInstance.post(url, data);
+        result = await axiosInstance.post(url, data, {
+          params: { myKey: myApiKey },
+        });
         break;
       case "delete":
-        result = await axiosInstance.delete(url);
+        result = await axiosInstance.delete(url, {
+          params: { myKey: myApiKey },
+        });
         break;
       default:
         throw new Error("Unsupported method");

@@ -3,6 +3,7 @@ import Searchbar from "./Searchbar";
 import AddButton from "./AddButton";
 import { faCircleUser, faMoon } from "@fortawesome/free-solid-svg-icons";
 import HeaderIcon from "./HeaderIcon";
+import RefreshIcon from "./RefreshIcon";
 
 // import logo from "@/public/assets/logo.png";
 
@@ -29,6 +30,7 @@ const Header = () => {
         {/* Searchbar */}
         <div className="flex items-center justify-between md:justify-center gap-6 mx-auto md:mx-0">
           <Searchbar />
+          <RefreshIcon />
           {/* add note */}
           <AddButton />
         </div>

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 import { faPlugCircleXmark } from "@fortawesome/free-solid-svg-icons";
@@ -9,8 +9,9 @@ import SmallNote from "./SmallNote";
 import Loader from "./Loader";
 import BGInfo from "./BGInfo";
 import Modal from "./Modal";
-import ViewNote from "./ViewNote";
+import NoteDetail from "./NoteDetail";
 import { myNotesContext } from "@/context/NotesContext";
+import DeleteAlert from "./DeleteAlert";
 
 const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
   const {
@@ -21,25 +22,32 @@ const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
     isModalOpen,
     notesData,
     handleToggleModal,
-    fetchData,
+    fetchNotesList,
     loading,
+    // handleCloseNote,
+    deleteModal,
+    setDeleteModal,
+    setCurrentPage,
   } = myNotesContext();
-  
+
+  const [error, setError] = useState("");
 
   const handleOpenNote = async (noteId) => {
     setCurrNoteLoading(true);
     handleToggleModal();
     const payload = { noteId: noteId };
     let newNote = await Api("/getnote", "post", payload);
-    setCurrentNote(newNote);
+    setCurrentNote(newNote.response);
+    if (newNote.error) {
+      setError(newNote.error);
+    }
     setCurrNoteLoading(false);
   };
 
   useEffect(() => {
-   
-    fetchData(currPage);
+    fetchNotesList(currPage);
+    setCurrentPage(currPage);
   }, []);
-
 
   return (
     <>
@@ -65,11 +73,31 @@ const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
       ) : (
         // if notes are present:
         <div className="flex flex-wrap justify-center gap-4">
-          <Modal isOpen={isModalOpen} onClose={handleToggleModal}>
-            <ViewNote note={currentNote} noteLoading={currNoteLoading} />
+          {/* ===== modal for note detail ===== */}
+          <Modal isOpen={isModalOpen} 
+          // onClose={handleCloseNote}
+          >
+            <NoteDetail
+              note={currentNote}
+              error={error}
+              noteLoading={currNoteLoading}
+            />
           </Modal>
+
+          {/* ===== modal for delete confirmation ===== */}
+          <Modal
+            isOpen={deleteModal}
+            // onClose={() => {
+            //   setDeleteModal(false);
+            // }}
+          >
+            <DeleteAlert />
+          </Modal>
+
           {notesData?.response?.map((note, noteIdx) => (
-            <SmallNote key={noteIdx} note={note} handleClick={handleOpenNote} />
+            <span key={noteIdx}>
+              <SmallNote note={note} handleClick={handleOpenNote} />
+            </span>
           ))}
         </div>
       )}

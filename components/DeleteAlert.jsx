@@ -48,11 +48,9 @@ const DeleteAlert = () => {
           color="#03c900"
           bgColor="#e3ffe3"
           handleClick={() => {
-            if (currentPage === "trash") {
+          
               handleDelete();
-            } else {
-              handleTrash();
-            }
+            
           }}
         >
           <FontAwesomeIcon icon={faCheck} className="w-5 h-5" />

@@ -6,7 +6,7 @@ const Modal = ({ children, isOpen, onClose }) => {
   const { currentNote } = myNotesContext();
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-75 transition duration-300 ease-in-out ${
+      className={`fixed inset-0 z-10 flex items-center justify-center bg-gray-500 bg-opacity-75 transition duration-300 ease-in-out ${
         !isOpen && "hidden"
       }`}
     >

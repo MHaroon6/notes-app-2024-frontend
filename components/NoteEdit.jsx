@@ -1,0 +1,76 @@
+import { useState } from "react";
+import { myNotesContext } from "@/context/NotesContext";
+
+import CloseButton from "./CloseButton";
+import ModalButton from "./ModalButton";
+
+const NoteEdit = () => {
+  const { currentNote, handleCloseNote, setMode, handleSaveNote } =
+    myNotesContext();
+  const [title, setTitle] = useState(currentNote?.title || "");
+  const [content, setContent] = useState(currentNote?.content || "");
+
+  const [isSaving, setIsSaving] = useState(null);
+
+  return (
+    <>
+      <form className="flex flex-col gap-4 bg-transparent my-2">
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+          className="bg-transparent border-0 outline-none text-lg font-semibold"
+          placeholder="Note Title"
+        />
+
+        <textarea
+          name="content"
+          id="content"
+          cols="30"
+          rows="10"
+          value={content}
+          onChange={(e) => {
+            setContent(e.target.value);
+          }}
+          className="bg-transparent border-0 outline-none min-h-[480px]"
+          placeholder="Note Text"
+        ></textarea>
+      </form>
+      <div className="flex justify-end items-center  bottom-0 right-0">
+        <CloseButton handleClose={handleCloseNote} />
+        <ModalButton
+          color="#06b6d4"
+          bgColor="#fff"
+          allowHover={false}
+          handleClick={() => {
+            handleSaveNote({ saveNClose: false, title, content });
+            setIsSaving("save");
+          }}
+          disabled={isSaving}
+        >
+          <span className="py-1 px-3">
+            {isSaving === "save" ? "Saving..." : "Save"}
+          </span>
+        </ModalButton>
+        <ModalButton
+          color="#06b6d4"
+          bgColor="#fff"
+          allowHover={false}
+          handleClick={() => {
+            handleSaveNote({ saveNClose: true, title, content });
+            setIsSaving("saveNClose");
+          }}
+          disabled={isSaving}
+        >
+          <span className="py-1 px-3">
+            {isSaving === "saveNClose" ? "Saving..." : " Save & Close"}
+          </span>
+        </ModalButton>
+      </div>
+    </>
+  );
+};
+
+export default NoteEdit;

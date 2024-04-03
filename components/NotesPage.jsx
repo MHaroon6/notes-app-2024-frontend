@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 import { faPlugCircleXmark } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +11,7 @@ import Modal from "./Modal";
 import NoteDetail from "./NoteDetail";
 import { myNotesContext } from "@/context/NotesContext";
 import DeleteAlert from "./DeleteAlert";
+import RestoreAlert from "./RestoreAlert";
 
 const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
   const {
@@ -20,10 +21,10 @@ const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
     loading,
     // handleCloseNote,
     deleteModal,
-
     setCurrentPage,
-
     handleOpenNote,
+    restoreModal,
+    // setRestoreModal,
   } = myNotesContext();
 
   // const [error, setError] = useState("");
@@ -41,12 +42,33 @@ const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
   // };
 
   useEffect(() => {
-    fetchNotesList(currPage);
     setCurrentPage(currPage);
+    fetchNotesList(currPage);
   }, []);
 
   return (
     <>
+      {/* ===== Modals ===== */}
+
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          // onClose={handleCloseNote}
+        >
+          <NoteDetail />
+        </Modal>
+      )}
+      {deleteModal && (
+        <Modal isOpen={deleteModal}>
+          <DeleteAlert />
+        </Modal>
+      )}
+      {restoreModal && (
+        <Modal isOpen={restoreModal}>
+          <RestoreAlert />
+        </Modal>
+      )}
+
       {loading ? (
         // While loading:
         <div className="mt-4 flex justify-center items-center h-full">
@@ -70,26 +92,6 @@ const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
         // if notes are present:
         <div className="flex flex-wrap justify-center gap-4">
           {/* ===== modal for note detail ===== */}
-          {isModalOpen && (
-            <Modal
-              isOpen={isModalOpen}
-              // onClose={handleCloseNote}
-            >
-              <NoteDetail />
-            </Modal>
-          )}
-
-          {/* ===== modal for delete confirmation ===== */}
-          {deleteModal && (
-            <Modal
-              isOpen={deleteModal}
-              // onClose={() => {
-              //   setDeleteModal(false);
-              // }}
-            >
-              <DeleteAlert />
-            </Modal>
-          )}
 
           {notesData?.response?.map((note, noteIdx) => (
             <span key={noteIdx}>

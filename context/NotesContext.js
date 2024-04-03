@@ -12,10 +12,11 @@ const NotesProvider = ({ children }) => {
   const [currentNote, setCurrentNote] = useState({});
   const [currNoteLoading, setCurrNoteLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [restoreModal, setRestoreModal] = useState(false);
   const [notesData, setNotesData] = useState({});
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState(""); // three modes ["edit", "view", "new"]
-  const [deleteModal, setDeleteModal] = useState(false);
   const [currentPage, setCurrentPage] = useState("");
   const [error, setError] = useState("");
 
@@ -24,11 +25,15 @@ const NotesProvider = ({ children }) => {
     setIsModalOpen((prevState) => !prevState);
   };
 
-  const fetchNotesList = async (currPage) => {
+  const fetchNotesList = async (currPage = currentPage) => {
     if (!isModalOpen) {
       setLoading(true);
     }
-    const payload = { status: currPage === "trash" ? "trash" : "" };
+    console.log("currpage is : ", currPage)
+    console.log("current is : ", currentPage)
+    const payload = {
+      status: currPage === "trash" ? "trash" : "",
+    };
     // const res = useApi("/getnotes", "post", payload );
     const res = await Api("/getnotes", "post", payload);
     // { response, error, loading }
@@ -102,7 +107,7 @@ const NotesProvider = ({ children }) => {
 
     setCurrentNote(res.response);
 
-    console.log("posted: ", res);
+    // console.log("posted: ", res);
 
     if (saveNClose) {
       handleCloseNote();
@@ -113,36 +118,38 @@ const NotesProvider = ({ children }) => {
     fetchNotesList();
   };
 
-  const handleTrash = () => {
+  const handleRecover = async () => {
     // api call to move to trash
     // console.log("Trashed...")
-    // let payload = {
-    //   id: currentNote?._id,
-    //   status: "trash",
-    // };
-    // const res = Api("/postnote", "post", payload);
-    // if (res.error) {
-    //   alert(error);
-    // } else {
-    //   console.log(res?.response);
-    setDeleteModal(false);
-    // }
+    setRestoreModal(false);
+    let payload = {
+      _id: currentNote?._id,
+      status: "",
+    };
+    const res = await Api("/postnote", "post", payload);
+    if (res.error) {
+      alert(error);
+    } else {
+      // console.log(res);
+      fetchNotesList(currentPage);
+    }
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     // api call to remove from trash
     // console.log("Deleted...")
-    // let payload = {
-    //   id: currentNote?._id,
-    //   status: "deleted",
-    // };
-    // const res = Api("/postnote", "post", payload);
-    // if (res.error) {
-    //   alert(error);
-    // } else {
-    //   console.log(res?.response);
     setDeleteModal(false);
-    // }
+    let payload = {
+      _id: currentNote?._id,
+      status: currentPage === "trash" ? "deleted" : "trash",
+    };
+    const res = await Api("/postnote", "post", payload);
+    if (res.error) {
+      alert(error);
+    } else {
+      console.log(res?.response);
+      fetchNotesList(currentPage);
+    }
   };
 
   // <========== Exporting values ==========>
@@ -165,7 +172,7 @@ const NotesProvider = ({ children }) => {
     handleCloseNote,
     deleteModal,
     setDeleteModal,
-    handleTrash,
+    handleRecover,
     handleDelete,
     currentPage,
     setCurrentPage,
@@ -173,6 +180,8 @@ const NotesProvider = ({ children }) => {
     handleSaveNote,
     error,
     setError,
+    restoreModal,
+    setRestoreModal,
   };
 
   return (

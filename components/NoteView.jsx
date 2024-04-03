@@ -3,7 +3,7 @@ import CloseButton from "./CloseButton";
 import ModalButton from "./ModalButton";
 
 const NoteView = () => {
-  const { currentNote, handleCloseNote, setMode } = myNotesContext();
+  const { currentNote, handleCloseNote, setMode, currentPage } = myNotesContext();
 
   const formatDate = (date) => {
     // Use the nullish coalescing operator (??) to return an empty string if date is null or undefined
@@ -38,16 +38,19 @@ const NoteView = () => {
         </div>
         <div className="flex">
           <CloseButton handleClose={handleCloseNote} />
-          <ModalButton
-            color="#00c700"
-            bgColor="#fff"
-            allowHover={false}
-            handleClick={() => {
-              setMode("edit");
-            }}
-          >
-            <span className="py-1 px-3">Edit Note</span>
-          </ModalButton>
+
+          {currentPage !== "trash" && (
+            <ModalButton
+              color="#00c700"
+              bgColor="#fff"
+              allowHover={false}
+              handleClick={() => {
+                setMode("edit");
+              }}
+            >
+              <span className="py-1 px-3">Edit Note</span>
+            </ModalButton>
+          )}
         </div>
       </div>
     </div>

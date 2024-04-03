@@ -13,7 +13,9 @@ const RefreshIcon = () => {
         icon={faRotate}
         className="w-6 h-6 text-cyan-500 cursor-pointer border-0 outline-none"
         id="refresh"
-        onClick={fetchNotesList}
+        onClick={() => {
+          fetchNotesList();
+        }}
       />
       <Tooltip
         anchorSelect={`#refresh`}

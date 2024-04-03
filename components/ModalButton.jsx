@@ -7,6 +7,7 @@ const ModalButton = ({
   handleClick,
   allowHover = true,
   disabled = false,
+  title,
 }) => {
   const [hover, setHover] = useState(false);
   return (
@@ -25,6 +26,7 @@ const ModalButton = ({
       }}
       onClick={handleClick}
       disabled={disabled}
+      title={title}
     >
       {children}
     </button>

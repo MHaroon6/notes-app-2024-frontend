@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import Searchbar from "./Searchbar";
 import AddButton from "./AddButton";
-import { faCircleUser, faMoon } from "@fortawesome/free-solid-svg-icons";
-import HeaderIcon from "./HeaderIcon";
-import RefreshIcon from "./RefreshIcon";
+
+import RefreshIcon from "./RefreshIcon"; 
+import HeaderIcons from "./HeaderIcons";
 
 // import logo from "@/public/assets/logo.png";
 
@@ -36,20 +36,8 @@ const Header = () => {
           <AddButton />
         </div>
 
-        <div className="flex justify-between items-center gap-8 absolute top-4 right-4 md:top-0 md:right-0 md:relative">
-          {/* Themetoggler */}
-          <HeaderIcon
-            icon={faMoon}
-            iconId="darkmode"
-            content="Toggle Dark Mode"
-          />
-
-          {/* User Accont */}
-          <HeaderIcon
-            icon={faCircleUser}
-            iconId="userIcon"
-            content="User Account"
-          />
+        <div className="flex justify-between items-center gap-8 mr-4 absolute top-4 right-4 md:top-0 md:right-0 md:relative">
+          <HeaderIcons />
         </div>
       </header>
     </div>

@@ -9,7 +9,7 @@ import NotesProvider from "@/context/NotesContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Notes App 2024",
+  title: "Notes App 2024", 
   description: "A simple note keeping application.",
 };
 

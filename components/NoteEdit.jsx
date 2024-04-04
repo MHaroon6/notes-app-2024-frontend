@@ -3,9 +3,11 @@ import { myNotesContext } from "@/context/NotesContext";
 
 import CloseButton from "./CloseButton";
 import ModalButton from "./ModalButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaintRoller } from "@fortawesome/free-solid-svg-icons";
 
 const NoteEdit = () => {
-  const { currentNote, handleCloseNote, setMode, handleSaveNote } =
+  const { currentNote, handleCloseNote, setMode, handleSaveNote, changeColor } =
     myNotesContext();
   const [title, setTitle] = useState(currentNote?.title || "");
   const [content, setContent] = useState(currentNote?.content || "");
@@ -21,7 +23,7 @@ const NoteEdit = () => {
           onChange={(e) => {
             setTitle(e.target.value);
           }}
-          className="bg-transparent border-0 outline-none text-lg font-semibold"
+          className="bg-transparent border-b border-gray-500 p-2 outline-none text-lg font-semibold"
           placeholder="Note Title"
         />
 
@@ -34,11 +36,25 @@ const NoteEdit = () => {
           onChange={(e) => {
             setContent(e.target.value);
           }}
-          className="bg-transparent border-0 outline-none min-h-[480px]"
+          className="bg-transparent border border-gray-500 outline-none min-h-[470px] rounded-md p-2"
           placeholder="Note Text"
         ></textarea>
       </form>
       <div className="flex justify-end items-center  bottom-0 right-0">
+        <div
+          className="flex"
+          style={{ marginRight: "auto" }}
+          onClick={(e) => {
+            e.stopPropagation();
+            changeColor();
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faPaintRoller}
+            className="w-6 h-6 text-gray-500 cursor-pointer  hover:text-gray-600"
+            title="Change Color"
+          />
+        </div>
         <CloseButton handleClose={handleCloseNote} />
         <ModalButton
           color="#06b6d4"

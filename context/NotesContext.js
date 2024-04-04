@@ -20,28 +20,37 @@ const NotesProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState("");
   const [error, setError] = useState("");
 
-  // <========== General Functions ==========>
-  const handleToggleModal = () => {
-    setIsModalOpen((prevState) => !prevState);
-  };
+  const [searchString, setSearchString] = useState("");
 
-  const fetchNotesList = async (currPage = currentPage) => {
-    if (!isModalOpen) {
+  // <========== General Functions ==========>
+
+  const fetchNotesList = async (
+    currPage = currentPage,
+    text = searchString,
+    isTyping = false,
+  ) => {
+    // const isTyping = text !== searchString;
+    if (!isModalOpen && !isTyping) {
       setLoading(true);
     }
-    console.log("currpage is : ", currPage)
-    console.log("current is : ", currentPage)
+    // console.log("currpage is : ", currPage);
+    // console.log("current is : ", currentPage);
     const payload = {
       status: currPage === "trash" ? "trash" : "",
+      searchString: text,
     };
     // const res = useApi("/getnotes", "post", payload );
     const res = await Api("/getnotes", "post", payload);
     // { response, error, loading }
     setNotesData(res);
-    if (!isModalOpen) {
+    if (!isModalOpen && !isTyping) {
       setLoading(false);
     }
     // console.log("responseData: ", res)
+  };
+
+  const handleToggleModal = () => {
+    setIsModalOpen((prevState) => !prevState);
   };
 
   const handleOpenNote = async (noteId) => {
@@ -59,11 +68,17 @@ const NotesProvider = ({ children }) => {
     setCurrNoteLoading(false);
   };
 
+  const generateRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * 16);
+    const randomColor = colors[randomIndex];
+    return randomColor;
+  };
+
   const handleNewNote = () => {
     handleToggleModal();
 
-    const randomIndex = Math.floor(Math.random() * 16);
-    const randomColor = colors[randomIndex];
+    const randomColor = generateRandomColor();
+
     setCurrentNote({
       title: "",
       content: "",
@@ -152,6 +167,14 @@ const NotesProvider = ({ children }) => {
     }
   };
 
+  const changeColor = () => {
+    const randColor = generateRandomColor();
+    setCurrentNote((prevState) => ({
+      ...prevState,
+      color: randColor,
+    }));
+  };
+
   // <========== Exporting values ==========>
   const value = {
     currentNote,
@@ -182,6 +205,9 @@ const NotesProvider = ({ children }) => {
     setError,
     restoreModal,
     setRestoreModal,
+    changeColor,
+    searchString,
+    setSearchString,
   };
 
   return (

@@ -2,9 +2,21 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { myNotesContext } from "@/context/NotesContext";
 
 const Searchbar = () => {
-  const [searchString, setSearchString] = useState("");
+  const { fetchNotesList, currentPage, searchString, setSearchString } =
+    myNotesContext();
+
+  const initiateSearch = (text) => {
+    setSearchString(text);
+
+    if (text?.length > 0) {
+      fetchNotesList(currentPage, text, true);
+    } else if (text?.length === 0) {
+      fetchNotesList(currentPage, text, false);
+    }
+  };
 
   return (
     <div className="Searchbar  flex items-center gap-4 border border-gray-400 rounded-full py-2 px-4 bg-white">
@@ -16,9 +28,10 @@ const Searchbar = () => {
         className="border-none border-0 outline-none w-24 lg:w-96 bg-transparent"
         value={searchString}
         onChange={(e) => {
-          setSearchString(e.target.value);
+          initiateSearch(e.target.value);
         }}
         autoComplete="off"
+        // title="Type at least 3 characters to search"
       />
 
       <span
@@ -27,14 +40,11 @@ const Searchbar = () => {
         }`}
         onClick={() => {
           setSearchString("");
+          fetchNotesList(currentPage, "", false);
         }}
         title="Reset"
       >
-        <FontAwesomeIcon
-          icon={faTimes}
-          className="w-4 text-gray-400 "
-        
-        />
+        <FontAwesomeIcon icon={faTimes} className="w-4 text-gray-400 " />
       </span>
     </div>
   );

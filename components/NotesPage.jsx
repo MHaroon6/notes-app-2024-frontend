@@ -12,6 +12,7 @@ import NoteDetail from "./NoteDetail";
 import { myNotesContext } from "@/context/NotesContext";
 import DeleteAlert from "./DeleteAlert";
 import RestoreAlert from "./RestoreAlert";
+import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 
 const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
   const {
@@ -19,27 +20,12 @@ const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
     notesData,
     fetchNotesList,
     loading,
-    // handleCloseNote,
     deleteModal,
     setCurrentPage,
     handleOpenNote,
     restoreModal,
-    // setRestoreModal,
+    searchString,
   } = myNotesContext();
-
-  // const [error, setError] = useState("");
-
-  // const handleOpenNote = async (noteId) => {
-  //   setCurrNoteLoading(true);
-  //   handleToggleModal();
-  //   const payload = { noteId: noteId };
-  //   let newNote = await Api("/getnote", "post", payload);
-  //   setCurrentNote(newNote.response);
-  //   if (newNote.error) {
-  //     setError(newNote.error);
-  //   }
-  //   setCurrNoteLoading(false);
-  // };
 
   useEffect(() => {
     setCurrentPage(currPage);
@@ -51,10 +37,7 @@ const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
       {/* ===== Modals ===== */}
 
       {isModalOpen && (
-        <Modal
-          isOpen={isModalOpen}
-          // onClose={handleCloseNote}
-        >
+        <Modal isOpen={isModalOpen}>
           <NoteDetail />
         </Modal>
       )}
@@ -83,14 +66,23 @@ const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
         />
       ) : notesData?.response?.length === 0 ? (
         // if notesl list is empty:
-        <BGInfo
-          icon={faFolderOpen}
-          message1={emptyMessage1}
-          message2={emptyMessage2}
-        />
+
+        searchString?.length === 0 ? (
+          <BGInfo
+            icon={faFolderOpen}
+            message1={emptyMessage1}
+            message2={emptyMessage2}
+          />
+        ) : (
+          <BGInfo
+            icon={faSearchengin}
+            message1={"Oops!"}
+            message2={"We couldn't find any matches for your search term."}
+          />
+        )
       ) : (
         // if notes are present:
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-6 px-8 pb-6">
           {/* ===== modal for note detail ===== */}
 
           {notesData?.response?.map((note, noteIdx) => (

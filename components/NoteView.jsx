@@ -27,7 +27,7 @@ const NoteView = () => {
 
       <p>{currentNote?.content}</p>
 
-      <div className="flex  justify-between items-center absolute bottom-0 w-full ">
+      <div className="flex  justify-between items-center absolute bottom-0 w-[97%] ">
         <div className="text-xs  flex flex-col gap-1">
           <span>Created: {formatDate(currentNote?.create_date)}</span>
           <span>

@@ -6,7 +6,7 @@ const Sidebar = () => {
     <>
       {/*  <=========== sidebar for computer screen ===========> */}
       <div className="z-20 fixed large-screen h-screen hidden md:flex flex-col justify-center ">
-        <nav className="border border-gray-500 rounded-r-md w-16 h-96 flex flex-col justify-between item-center  ">
+        <nav className="border border-gray-300 bg-gradient-to-tl from-pink-50 to-cyan-50 shadow-md rounded-r-md w-16 h-96 flex flex-col justify-between item-center  ">
           <div className=" flex justify-center p-2 ">
             <SidebarItem
               link="/notes"
@@ -15,7 +15,7 @@ const Sidebar = () => {
               title="Notes"
             />
           </div>
-          <div className=" border-t border-gray-500 flex justify-center p-2">
+          <div className=" border-t border-gray-300 flex justify-center p-2">
             <SidebarItem
               link="/trash"
               icon={faTrashCan}

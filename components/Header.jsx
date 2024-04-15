@@ -29,7 +29,7 @@ const Header = () => {
           </div>
         </Link>
         {/* Searchbar */}
-        <div className="flex items-center justify-between md:justify-center gap-6 mx-auto md:mx-0">
+        <div className="flex items-center justify-between md:justify-center gap-3 md:gap-6 mx-auto md:mx-0">
           <Searchbar />
           <RefreshIcon />
           {/* add note */}

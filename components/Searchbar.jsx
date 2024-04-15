@@ -19,13 +19,13 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="Searchbar  flex items-center gap-4 border border-gray-400 rounded-full py-2 px-4 bg-white">
+    <div className="Searchbar  flex items-center gap-4 border border-gray-400 rounded-full py-1 px-2 lg:py-2 lg:px-4 bg-white">
       <FontAwesomeIcon icon={faMagnifyingGlass} className="w-4 text-cyan-500" />
       <input
         type="text"
         name="searchString"
         placeholder="Search"
-        className="border-none border-0 outline-none w-24 lg:w-96 bg-transparent"
+        className="border-none border-0 outline-none w-24 lg:w-96 bg-transparent text-xs lg:text-base"
         value={searchString}
         onChange={(e) => {
           initiateSearch(e.target.value);

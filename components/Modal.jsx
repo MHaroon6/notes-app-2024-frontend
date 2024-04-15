@@ -11,7 +11,7 @@ const Modal = ({ children, isOpen, onClose }) => {
       }`}
     >
       <div
-        className=" rounded-lg px-4 py-5 shadow-lg max-w-3xl"
+        className=" rounded-lg px-4 py-5 shadow-lg max-w-[95vw] lg:max-w-3xl"
         style={{ backgroundColor: currentNote?.color || "white" }}
       >
         {children} {/* Modal content goes here */}

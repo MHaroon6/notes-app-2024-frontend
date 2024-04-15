@@ -23,11 +23,11 @@ const NoteView = () => {
 
   return (
     <div>
-      <h4 className="text-lg font-semibold mb-5">{currentNote?.title}</h4>
+      <h4 className="text-lg font-semibold mb-5 mx-auto">{currentNote?.title}</h4>
 
-      <p>{currentNote?.content}</p>
+      <p className="w-[95%] max-h-[440px] lg:max-h-[480px] overflow-auto">{currentNote?.content}</p>
 
-      <div className="flex  justify-between items-center absolute bottom-0 w-[97%] ">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center absolute bottom-0 w-[90%] ">
         <div className="text-xs  flex flex-col gap-1">
           <span>Created: {formatDate(currentNote?.create_date)}</span>
           <span>
@@ -36,7 +36,7 @@ const NoteView = () => {
               formatDate(currentNote?.create_date)}
           </span>
         </div>
-        <div className="flex">
+        <div className="flex justify-end px-2 mt-2">
           <CloseButton handleClose={handleCloseNote} />
 
           {currentPage !== "trash" && (

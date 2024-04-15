@@ -17,7 +17,13 @@ const SmallNote = ({ note, handleClick }) => {
 
     setRestoreModal,
   } = myNotesContext();
-  const [showIcons, setShowIcons] = useState(false);
+
+  // Define a media query for mobile devices
+  const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+  const isMobile = mediaQuery.matches;
+
+  const [showIcons, setShowIcons] = useState(isMobile);
   return (
     <div
       // key={key}
@@ -31,7 +37,11 @@ const SmallNote = ({ note, handleClick }) => {
         setShowIcons(true);
       }}
       onMouseLeave={() => {
-        setShowIcons(false);
+        if(!isMobile){
+
+          setShowIcons(false);
+        }
+
       }}
     >
       <div className="text-lg text-center">{note?.title}</div>

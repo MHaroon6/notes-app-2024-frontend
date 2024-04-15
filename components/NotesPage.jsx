@@ -82,7 +82,7 @@ const NotesPage = ({ emptyMessage1, emptyMessage2, currPage }) => {
         )
       ) : (
         // if notes are present:
-        <div className="flex flex-wrap justify-center gap-6 px-8 pb-6">
+        <div className="flex flex-wrap justify-center gap-6 px-8 pt-4 pb-20 md:pt-0 md:pb-6">
           {/* ===== modal for note detail ===== */}
 
           {notesData?.response?.map((note, noteIdx) => (

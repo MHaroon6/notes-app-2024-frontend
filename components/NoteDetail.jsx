@@ -25,7 +25,7 @@ const NoteDetail = () => {
  
 
   return (
-    <div className="w-[700px] min-h-[600px] max-h-[80vh] overflow-auto flex flex-col relative px-4">
+    <div className="w-[700px] max-w-[95vw] min-h-[600px] max-h-[80vh] overflow-auto flex flex-col relative px-4">
       {mode === "new" ? (
         <NoteEdit />
       ) : error ? (

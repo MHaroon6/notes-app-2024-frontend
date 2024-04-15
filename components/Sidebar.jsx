@@ -27,7 +27,7 @@ const Sidebar = () => {
       </div>
 
       {/*  <=========== sidebar for Mobile screen ===========> */}
-      <div className="mobile-sidebar md:hidden fixed bottom-0 border-t border-gray-500 w-screen flex justify-between px-10 py-2 ">
+      <div className=" z-20 mobile-sidebar md:hidden fixed bottom-0 border-t border-gray-500 w-screen flex justify-between px-10 py-2 bg-gradient-to-tl from-pink-50 to-cyan-50 shadow-md ">
         <div className=" flex justify-center p-2">
           <SidebarItem
             link="/notes"
@@ -44,7 +44,6 @@ const Sidebar = () => {
             color="text-red-500"
             title="Trash"
             toolTipPosition="top"
-
           />
         </div>
       </div>

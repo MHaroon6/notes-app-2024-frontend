@@ -25,7 +25,7 @@ const NoteView = () => {
     <div>
       <h4 className="text-lg font-semibold mb-5 mx-auto">{currentNote?.title}</h4>
 
-      <p className="w-[95%] max-h-[440px] lg:max-h-[480px] overflow-auto">{currentNote?.content}</p>
+      <p className="w-[95%] lg:w-full max-h-[440px] lg:max-h-[480px] overflow-auto">{currentNote?.content}</p>
 
       <div className="flex flex-col md:flex-row md:justify-between md:items-center absolute bottom-0 w-[90%] ">
         <div className="text-xs  flex flex-col gap-1">

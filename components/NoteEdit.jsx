@@ -16,7 +16,7 @@ const NoteEdit = () => {
 
   return (
     <>
-      <form className="flex flex-col gap-4 bg-transparent my-2 w-[90%]">
+      <form className="flex flex-col gap-4 bg-transparent my-2 w-[90%] lg:w-full">
         <input
           type="text"
           value={title}

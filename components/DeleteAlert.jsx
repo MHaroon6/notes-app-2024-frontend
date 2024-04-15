@@ -18,12 +18,12 @@ const DeleteAlert = () => {
         {currentPage === "trash" ? (
           <FontAwesomeIcon
             icon={faCircleXmark}
-            className="text-red-500 w-20 h-20 opacity-60 "
+            className="text-red-500 fa-5x opacity-60 "
           />
         ) : (
           <FontAwesomeIcon
             icon={faTrashAlt}
-            className="text-red-500 w-20 h-20 opacity-60 "
+            className="text-red-500  fa-5x opacity-60 "
           />
         )}
       </div>
@@ -42,7 +42,7 @@ const DeleteAlert = () => {
           }}
           title="Cancel"
         >
-          <FontAwesomeIcon icon={faTimes} className="w-5 h-5" />
+          <FontAwesomeIcon icon={faTimes} className="fa-lg" />
         </ModalButton>
         <ModalButton
           color="#03c900"
@@ -53,7 +53,7 @@ const DeleteAlert = () => {
           title="Continue"
 
         >
-          <FontAwesomeIcon icon={faCheck} className="w-5 h-5" />
+          <FontAwesomeIcon icon={faCheck} className="fa-lg" />
         </ModalButton>
       </div>
     </div>

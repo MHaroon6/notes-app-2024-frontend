@@ -20,7 +20,7 @@ const Searchbar = () => {
 
   return (
     <div className="Searchbar  flex items-center gap-4 border border-gray-400 rounded-full py-1 px-2 lg:py-2 lg:px-4 bg-white">
-      <FontAwesomeIcon icon={faMagnifyingGlass} className="w-4 text-cyan-500" />
+      <FontAwesomeIcon icon={faMagnifyingGlass} className=" fa-1x text-cyan-500" />
       <input
         type="text"
         name="searchString"
@@ -44,7 +44,7 @@ const Searchbar = () => {
         }}
         title="Reset"
       >
-        <FontAwesomeIcon icon={faTimes} className="w-4 text-gray-400 " />
+        <FontAwesomeIcon icon={faTimes} className="fa-1x text-gray-400 " />
       </span>
     </div>
   );

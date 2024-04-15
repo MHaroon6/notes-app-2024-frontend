@@ -51,7 +51,7 @@ const NoteEdit = () => {
         >
           <FontAwesomeIcon
             icon={faPaintRoller}
-            className="w-6 h-6 text-gray-500 cursor-pointer  hover:text-gray-600"
+            className="fa-xl text-gray-500 cursor-pointer  hover:text-gray-600"
             title="Change Color"
           />
         </div>

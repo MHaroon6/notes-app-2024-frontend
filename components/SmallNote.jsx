@@ -37,11 +37,9 @@ const SmallNote = ({ note, handleClick }) => {
         setShowIcons(true);
       }}
       onMouseLeave={() => {
-        if(!isMobile){
-
+        if (!isMobile) {
           setShowIcons(false);
         }
-
       }}
     >
       <div className="text-lg text-center">{note?.title}</div>
@@ -53,7 +51,7 @@ const SmallNote = ({ note, handleClick }) => {
               <FontAwesomeIcon
                 // icon={faTrashArrowUp}
                 icon={faRotateRight}
-                className="cursor-pointer w-4 h-4  text-gray-500 hover:text-gray-400  m-2"
+                className="cursor-pointer fa-1x  text-gray-500 hover:text-gray-400  m-2"
                 onClick={(e) => {
                   e.stopPropagation();
                   setRestoreModal(true);
@@ -64,7 +62,7 @@ const SmallNote = ({ note, handleClick }) => {
             ) : (
               <FontAwesomeIcon
                 icon={faPen}
-                className="cursor-pointer w-4 h-4  text-gray-500 hover:text-gray-400  m-2"
+                className="cursor-pointer  fa-1x  text-gray-500 hover:text-gray-400  m-2"
                 onClick={(e) => {
                   e.stopPropagation();
                   handleClick(note?._id);
@@ -76,7 +74,7 @@ const SmallNote = ({ note, handleClick }) => {
 
             <FontAwesomeIcon
               icon={faTrash}
-              className="cursor-pointer w-4 h-4  text-gray-500 hover:text-gray-400 m-2 "
+              className="cursor-pointer fa-1x text-gray-500 hover:text-gray-400 m-2 "
               onClick={(e) => {
                 e.stopPropagation();
                 setDeleteModal(true);

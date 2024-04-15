@@ -10,7 +10,7 @@ const HeaderIcon = ({ icon, iconId, content }) => {
         <FontAwesomeIcon
           icon={icon}
           className={` ${
-            iconId === "userIcon" ? "h-6 w-6" : "h-4 w-4"
+            iconId === "userIcon" ? "fa-xl" : "fa-1x"
           } w-4 h-4 text-blue-950 `}
         />
       </div>

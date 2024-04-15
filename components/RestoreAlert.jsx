@@ -17,7 +17,7 @@ const RestoreAlert = () => {
 
         <FontAwesomeIcon
           icon={faRotateRight}
-          className="text-[#40c03e] w-20 h-20 opacity-60 "
+          className="text-[#40c03e] fa-5x opacity-60 "
         />
       </div>
       <div className="text-center">
@@ -34,7 +34,7 @@ const RestoreAlert = () => {
           }}
           title="Cancel"
         >
-          <FontAwesomeIcon icon={faTimes} className="w-5 h-5" />
+          <FontAwesomeIcon icon={faTimes} className="fa-lg" />
         </ModalButton>
         <ModalButton
           color="#03c900"
@@ -44,7 +44,7 @@ const RestoreAlert = () => {
           }}
           title="Continue"
         >
-          <FontAwesomeIcon icon={faCheck} className="w-5 h-5" />
+          <FontAwesomeIcon icon={faCheck} className="fa-lg" />
         </ModalButton>
       </div>
     </div>

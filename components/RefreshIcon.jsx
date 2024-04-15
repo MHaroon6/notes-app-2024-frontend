@@ -11,7 +11,7 @@ const RefreshIcon = () => {
     <>
       <FontAwesomeIcon
         icon={faRotate}
-        className="w-6 h-6 text-cyan-500 cursor-pointer border-0 outline-none"
+        className="fa-xl text-cyan-500 cursor-pointer border-0 outline-none"
         id="refresh"
         onClick={() => {
           fetchNotesList();

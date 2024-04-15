@@ -18,7 +18,7 @@ const SidebarItem = ({ link, icon, color, title, toolTipPosition }) => {
       >
         <FontAwesomeIcon
           icon={icon}
-          className={`w-6 h-6 cursor-pointer  ${
+          className={`fa-xl cursor-pointer  ${
             pathname === link ? color : "hover:text-gray-500"
           }  `}
         />

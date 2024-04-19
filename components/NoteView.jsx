@@ -27,7 +27,7 @@ const NoteView = () => {
 
       <p className="w-[95%] lg:w-full max-h-[440px] lg:max-h-[480px] overflow-auto">{currentNote?.content}</p>
 
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center absolute bottom-0 w-[90%] ">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center absolute bottom-0 w-[90%] lg:w-[97%] ">
         <div className="text-xs  flex flex-col gap-1">
           <span>Created: {formatDate(currentNote?.create_date)}</span>
           <span>
